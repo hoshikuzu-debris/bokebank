@@ -1,0 +1,15 @@
+{% extends 'bokebank/base.html' %}
+
+{% block content %}
+    <h1>{{ question.text }}</h1>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    
+    <form action="{% url 'bokebank:evaluate' question.id %}" method="POST">
+        {% csrf_token %}
+        {% for answer in question.answer_set.all %}
+            <input type="radio" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
+            <label for="answer{{ forloop.counter }}">{{ answer.text }}</label><br>
+        {% endfor %}
+        <input type="submit" value="採点">
+    </form>
+{% endblock %}

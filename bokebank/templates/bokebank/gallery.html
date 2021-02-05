@@ -1,0 +1,13 @@
+{% extends 'bokebank/base.html' %}
+
+{% block content %}
+    {% if latest_question_list %}
+        <ul>
+        {% for question in latest_question_list %}
+            <li><a href="{% url 'bokebank:detail' question.id %}">{{ question.text }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No bokebank are available.</p>
+    {% endif %}
+{% endblock %}

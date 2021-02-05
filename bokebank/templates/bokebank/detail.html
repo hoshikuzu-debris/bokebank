@@ -1,0 +1,10 @@
+{% extends 'bokebank/base.html' %}
+
+{% block content %}
+    <h1>{{ question.text }}</h1>
+    <ul>
+    {% for answer in question.answer_set.all %}
+        <li>{{ answer.panelist }}:{{ answer.text }} -- {{ answer.vote }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
